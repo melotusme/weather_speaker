@@ -9,4 +9,3 @@ def get_weather
   resp = RestClient.get url
   r = JSON.parse resp
 end
-p get_weather

@@ -23,11 +23,15 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### tmp files ###
 t.mp3
-__pycache__/
 vendor/
 config.yaml
+*.lock
 
 
 ### ruby ###
 Gemfile.lock
+### python ###
+__pycache__/

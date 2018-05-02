@@ -83,3 +83,4 @@ if (response_head == "audio/mpeg"):
         os.system("mplayer t.mp3")
 else:
     print(response.read().decode('utf8'))
+    os.Exit(1)

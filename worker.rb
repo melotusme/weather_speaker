@@ -15,8 +15,8 @@ puts ' [*] Waiting for signals. To exit press CTRL+C'
 begin
   queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|
     puts "-- Received #{body}"
-    `python3 ./speech.py #{body}`
-    channel.ack(delivery_info.delivery_tag)
+    out = `python3 ./speech.py #{body}`
+    channel.ack(delivery_info.delivery_tag) if $?.success?
   end
 rescue Interrupt => _
   channel.close

@@ -12,9 +12,9 @@ channel.queue_declare(queue='weather', durable=True)
 def seather_speak():
     message = request.args.get("name")
     channel.basic_publish(exchange='',
-	    routing_key='weather',
-	    body=message,
-	    properties=pika.BasicProperties( delivery_mode = 2,)) # make message persistent
+                          routing_key='weather',
+                          body=message,
+                          properties=pika.BasicProperties(delivery_mode=2, ))  # make message persistent
     return "{message} sent".format(message=message)
 
 

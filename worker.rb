@@ -6,7 +6,7 @@ connection.start
 
 channel = connection.create_channel
 exchange = channel.topic("weather")
-queue = channel.queue('weather',durable: true)
+queue = channel.queue('weather', durable: true)
 
 channel.prefetch(1)
 

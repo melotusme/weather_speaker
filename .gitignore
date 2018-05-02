@@ -29,6 +29,7 @@ t.mp3
 vendor/
 config.yaml
 *.lock
+*.log
 
 
 ### ruby ###

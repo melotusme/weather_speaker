@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'bunny'
+require 'logger'
+$LOG = Logger.new("worker-ruby.log", 'daily')
 
 connection = Bunny.new
 connection.start
@@ -16,7 +18,11 @@ begin
   queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|
     puts "-- Received #{body}"
     out = `python3 ./speech.py #{body}`
-    channel.ack(delivery_info.delivery_tag) if $?.success?
+   if $?.success?
+    channel.ack(delivery_info.delivery_tag)
+   else
+     $LOG.error out
+   end
   end
 rescue Interrupt => _
   channel.close

@@ -16,7 +16,7 @@ puts ' [*] Waiting for signals. To exit press CTRL+C'
 
 begin
   queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|
-    puts "-- Received #{body}"
+    $LOG.info "-- Received #{body}"
     out = `python3 ./speech.py #{body}`
    if $?.success?
     channel.ack(delivery_info.delivery_tag)

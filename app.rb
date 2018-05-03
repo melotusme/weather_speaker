@@ -1,5 +1,6 @@
-require 'sinatra'
-require 'bunny'
+require 'bundler/setup'
+Bundler.require(:default)
+
 
 connection = Bunny.new(automatically_recover: false)
 
@@ -9,5 +10,5 @@ get '/weather_speaker' do
   message = params[:name]
   queue = channel.queue('weather', durable: true)
   queue.publish(message, persistent: true)
-  puts " [x] Sent: #{message}"
+  return " [x] Sent: #{message}"
 end
